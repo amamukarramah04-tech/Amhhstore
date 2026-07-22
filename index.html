@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AMAH STORE — Premium Apps Terpercaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#05030f;
+    --bg-deep:#170f3d;
+    --bg-violet:#3b1877;
+    --bg-purple:#6d28d9;
+    --bg-magenta:#9333ea;
+    --accent-cyan:#22d3ee;
+    --accent-cyan-soft:rgba(34,211,238,.18);
+    --accent-gold:#fbbf24;
+    --text-lav:#ede9fe;
+    --text-muted:#b9aee0;
+    --card-border:rgba(34,211,238,.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(165deg,var(--bg-void) 0%, var(--bg-deep) 28%, var(--bg-violet) 55%, var(--bg-purple) 80%, var(--bg-magenta) 100%);
+    background-attachment:fixed;
+    color:var(--text-lav);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Sora',sans-serif;}
+
+  .glow-orb{
+    position:fixed; border-radius:50%; filter:blur(90px); opacity:.35; z-index:0; pointer-events:none;
+  }
+  .glow-1{width:420px;height:420px; background:var(--accent-cyan); top:-120px; right:-100px;}
+  .glow-2{width:380px;height:380px; background:#c026d3; bottom:10%; left:-140px;}
+
+  header{
+    position:relative; z-index:2;
+    background:linear-gradient(135deg, #030112 0%, #170f3d 45%, #4c1d95 100%);
+    padding:26px 20px 22px;
+    text-align:center;
+    border-bottom:1px solid rgba(34,211,238,.25);
+    box-shadow:0 6px 30px rgba(0,0,0,.5);
+  }
+  .brand{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Sora',sans-serif; font-weight:800; font-size:1.6rem; letter-spacing:1px;
+    color:#fff;
+  }
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent-cyan); box-shadow:0 0 12px var(--accent-cyan);}
+  header h1{
+    margin-top:12px; font-size:2rem; font-weight:800; color:#fff;
+    text-shadow:0 2px 18px rgba(147,51,234,.6);
+  }
+  header p.tagline{margin-top:8px; color:var(--text-muted); font-size:.95rem; letter-spacing:.5px;}
+
+  .header-cta{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:7px;
+    padding:10px 18px; border-radius:999px; font-weight:600; font-size:.85rem;
+    text-decoration:none; cursor:pointer; border:none; transition:.25s transform ease, .25s box-shadow ease;
+  }
+  .btn-cyan{background:linear-gradient(120deg,var(--accent-cyan),#67e8f9); color:#062a30; box-shadow:0 4px 18px rgba(34,211,238,.35);}
+  .btn-outline{background:transparent; color:#fff; border:1px solid rgba(255,255,255,.35);}
+  .btn:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(34,211,238,.45);}
+
+  .ticker-wrap{
+    position:relative; z-index:2;
+    background:#0a0625; border-bottom:1px solid rgba(34,211,238,.2);
+    overflow:hidden; padding:10px 0;
+  }
+  .ticker{display:flex; width:max-content; animation:scroll-left 26s linear infinite; gap:40px;}
+  .ticker span{
+    white-space:nowrap; font-size:.82rem; font-weight:600; color:var(--accent-cyan);
+    display:flex; align-items:center; gap:8px; letter-spacing:.4px;
+  }
+  .ticker span::before{content:"✦"; color:var(--accent-gold);}
+  @keyframes scroll-left{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  .section{position:relative; z-index:2; padding:50px 20px; max-width:1150px; margin:auto;}
+  .eyebrow{
+    text-align:center; color:var(--accent-cyan); font-size:.78rem; font-weight:700;
+    letter-spacing:3px; text-transform:uppercase; margin-bottom:8px;
+  }
+  .section-title{
+    text-align:center; font-size:1.9rem; font-weight:800; color:#fff; margin-bottom:6px;
+  }
+  .section-sub{text-align:center; color:var(--text-muted); font-size:.92rem; margin-bottom:34px;}
+
+  .cat-label{
+    display:flex; align-items:center; gap:12px; margin:34px 0 16px;
+  }
+  .cat-label h3{color:#fff; font-size:1.1rem; font-weight:700; white-space:nowrap;}
+  .cat-label .line{height:1px; flex:1; background:linear-gradient(90deg, rgba(34,211,238,.5), transparent);}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; align-items:stretch;}
+  .card{
+    position:relative;
+    background:linear-gradient(160deg, #1c1147 0%, #2f1665 45%, #4c1d95 100%);
+    border:1px solid var(--card-border);
+    border-radius:12px;
+    padding:14px 10px;
+    overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    height:100%;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card::before{
+    content:""; position:absolute; inset:-1px; border-radius:16px; padding:1px;
+    background:linear-gradient(120deg, transparent, rgba(34,211,238,.55), transparent);
+    background-size:200% 200%;
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .3s ease;
+  }
+  .card:hover{transform:translateY(-5px); box-shadow:0 14px 34px rgba(34,211,238,.18);}
+  .card:hover::before{opacity:1; animation:shimmer 2.2s linear infinite;}
+  @keyframes shimmer{0%{background-position:0% 0%;} 100%{background-position:200% 200%;}}
+
+  .card.clickable{cursor:pointer;}
+  .card.clickable:hover{border-color:var(--accent-cyan);}
+  .wa-hint{
+    position:absolute; top:8px; right:8px;
+    width:22px; height:22px; border-radius:50%;
+    background:rgba(37,211,102,.15); border:1px solid rgba(37,211,102,.5);
+    color:#25D366; font-size:.7rem;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:scale(.8); transition:opacity .25s ease, transform .25s ease;
+  }
+  .card.clickable:hover .wa-hint{opacity:1; transform:scale(1);}
+
+  .payment-card{cursor:pointer;}
+  .payment-card:hover{border-color:var(--accent-cyan);}
+  .pay-hint{
+    position:absolute; top:8px; right:8px;
+    width:22px; height:22px; border-radius:50%;
+    background:rgba(34,211,238,.15); border:1px solid rgba(34,211,238,.5);
+    color:var(--accent-cyan); font-size:.68rem;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:scale(.8); transition:opacity .25s ease, transform .25s ease;
+  }
+  .payment-card:hover .pay-hint{opacity:1; transform:scale(1);}
+
+  .badge{
+    display:inline-flex; align-items:center; gap:5px;
+    background:var(--accent-cyan-soft); color:var(--accent-cyan);
+    font-size:.68rem; font-weight:700; padding:4px 10px; border-radius:999px;
+    margin-bottom:10px; letter-spacing:.3px;
+  }
+  .badge::before{content:"●"; font-size:.55rem;}
+
+  .app-logo{
+    width:36px; height:36px; border-radius:10px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:8px; overflow:hidden; flex-shrink:0;
+  }
+  .app-logo img{width:20px; height:20px; object-fit:contain;}
+  .app-logo-fallback{display:none; font-size:1rem; align-items:center; justify-content:center;}
+
+  .card h4{color:#fff; font-size:.78rem; font-weight:600; margin-bottom:6px; line-height:1.25; flex-grow:1;}
+  .card .price{color:var(--accent-gold); font-weight:700; font-size:.8rem; margin-bottom:0;}
+  .card .price small{color:var(--text-muted); font-weight:500; font-size:.64rem; display:block; margin-top:1px;}
+
+  #meteorCanvas{
+    position:fixed; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; display:block;
+  }
+
+  .why-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+  .why-card{
+    background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+    border-radius:14px; padding:20px; text-align:center;
+  }
+  .why-card .ic{font-size:1.6rem; margin-bottom:10px;}
+  .why-card h4{color:#fff; font-size:.95rem; margin-bottom:6px;}
+  .why-card p{color:var(--text-muted); font-size:.82rem; line-height:1.5;}
+
+  .rules-box{
+    background:linear-gradient(160deg, rgba(251,191,36,.08), rgba(251,191,36,.02));
+    border:1px solid rgba(251,191,36,.35);
+    border-radius:16px; padding:26px 28px; max-width:820px; margin:auto;
+  }
+  .rules-box li{
+    list-style:none; display:flex; gap:10px; margin-bottom:12px; color:var(--text-lav); font-size:.9rem; line-height:1.55;
+  }
+  .rules-box li span.num{
+    flex-shrink:0; width:22px; height:22px; border-radius:50%;
+    background:var(--accent-gold); color:#3b1877; font-size:.72rem; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .slider-container{
+    position:relative; width:260px; height:150px; margin:0 auto;
+    overflow:hidden; border-radius:14px; border:1px solid var(--card-border);
+    background:linear-gradient(160deg,#1c1147,#3b1877);
+  }
+  .slider{display:flex; height:100%; transition:transform .5s ease-in-out;}
+  .slide{min-width:100%; display:flex; flex-direction:column; justify-content:center; padding:18px 20px;}
+  .slide p.quote{font-size:.82rem; color:var(--text-lav); font-style:italic; line-height:1.5;}
+  .slide p.who{margin-top:10px; font-size:.75rem; color:var(--accent-cyan); font-weight:700;}
+  .slider-buttons{position:absolute; top:50%; width:260px; left:50%; transform:translate(-50%,-50%); display:flex; justify-content:space-between; pointer-events:none;}
+  .slider-buttons button{
+    background:rgba(34,211,238,.2); border:1px solid rgba(34,211,238,.4); color:#fff;
+    padding:5px 9px; border-radius:8px; cursor:pointer; pointer-events:auto;
+  }
+
+  .stars{text-align:center; color:var(--accent-gold); font-size:1.6rem; margin-top:8px; letter-spacing:4px;}
+  .rating-text{text-align:center; color:var(--text-muted); font-size:.88rem;}
+
+  .photo-gallery-wrap{
+    position:relative; max-width:100%; margin-top:34px;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .photo-gallery-track{
+    display:flex; gap:14px; width:max-content;
+    animation:photo-scroll 34s linear infinite;
+  }
+  .photo-gallery-wrap:hover .photo-gallery-track{animation-play-state:paused;}
+  @keyframes photo-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  .photo-slot{
+    flex-shrink:0; width:150px; height:200px; border-radius:14px;
+    border:1px dashed rgba(34,211,238,.4);
+    background:linear-gradient(160deg,#1c1147,#3b1877);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    overflow:hidden; position:relative;
+  }
+  .photo-slot img{width:100%; height:100%; object-fit:cover; display:block;}
+  .photo-slot .ph-icon{font-size:1.6rem; opacity:.55;}
+  .photo-slot .ph-label{color:var(--text-muted); font-size:.7rem; text-align:center; padding:0 10px;}
+
+  .contact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; max-width:700px; margin:auto;}
+  .contact-card{
+    background:linear-gradient(160deg,#1c1147,#4c1d95); border:1px solid var(--card-border);
+    border-radius:16px; padding:26px; text-align:center;
+  }
+  .contact-card .ic{font-size:1.8rem; margin-bottom:8px;}
+  .contact-card h4{color:#fff; margin-bottom:4px;}
+  .contact-card p{color:var(--text-muted); font-size:.82rem; margin-bottom:14px;}
+
+  .faq-section{max-width:780px; margin:auto; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:10px 22px;}
+  .faq-item{border-bottom:1px solid rgba(255,255,255,.08); padding:16px 0; cursor:pointer;}
+  .faq-item:last-child{border-bottom:none;}
+  .faq-question{font-weight:600; color:#fff; position:relative; padding-right:24px; font-size:.92rem;}
+  .faq-question::after{content:'+'; position:absolute; right:0; color:var(--accent-cyan); font-size:1.2rem; transition:transform .3s;}
+  .faq-item.active .faq-question::after{content:'-';}
+  .faq-answer{max-height:0; overflow:hidden; transition:max-height .4s ease; color:var(--text-muted); font-size:.85rem; margin-top:0;}
+  .faq-item.active .faq-answer{max-height:200px; margin-top:10px;}
+
+  .payment-notice{
+    max-width:640px; margin:0 auto 34px;
+    background:linear-gradient(160deg, rgba(251,191,36,.12), rgba(251,191,36,.03));
+    border:1px solid rgba(251,191,36,.4);
+    border-radius:16px; padding:20px 22px;
+    color:var(--text-lav); font-size:.88rem; line-height:1.6;
+  }
+  .payment-notice b{color:var(--accent-gold);}
+  .payment-notice .btn{margin-top:14px;}
+  .payment-logo-box{
+    background:#ffffff; width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .payment-logo-box img{width:80%; height:80%; object-fit:contain;}
+
+  footer{
+    position:relative; z-index:2;
+    background:#03010c; text-align:center; padding:26px 20px; margin-top:40px;
+    border-top:1px solid rgba(34,211,238,.2);
+  }
+  footer p{color:var(--text-muted); font-size:.82rem;}
+  footer .brand{font-size:1.1rem;}
+
+  #scrollTopBtn{
+    position:fixed; bottom:26px; right:22px; z-index:999;
+    background:linear-gradient(135deg,var(--accent-cyan),#818cf8); color:#0b0620;
+    border:none; padding:12px 15px; border-radius:50%; font-size:16px; cursor:pointer;
+    box-shadow:0 4px 16px rgba(34,211,238,.4); display:none;
+  }
+  #waFloat{
+    position:fixed; bottom:26px; left:22px; z-index:999;
+    background:#25D366; color:#fff; border:none; padding:12px 18px; border-radius:999px;
+    font-weight:700; font-size:.82rem; cursor:pointer; display:flex; align-items:center; gap:7px;
+    box-shadow:0 4px 16px rgba(37,211,102,.45);
+  }
+  #musicToggleBtn{
+    position:fixed; top:16px; right:16px; z-index:999;
+    width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.25);
+    background:rgba(10,6,37,.75); backdrop-filter:blur(6px);
+    color:#fff; font-size:1.15rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.4);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  #musicToggleBtn.playing{
+    background:linear-gradient(135deg,var(--accent-cyan),#818cf8); color:#0b0620;
+    box-shadow:0 4px 18px rgba(34,211,238,.5);
+    animation:musicPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes musicPulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+  }
+
+  .pay-modal-overlay{
+    position:fixed; inset:0; z-index:2000;
+    background:rgba(3,1,12,.78); backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .pay-modal-overlay.open{display:flex;}
+  .pay-modal-box{
+    position:relative;
+    width:100%; max-width:340px;
+    background:linear-gradient(160deg,#1c1147,#3b1877 55%,#4c1d95);
+    border:1px solid var(--card-border);
+    border-radius:18px;
+    padding:26px 22px 22px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.55);
+    animation:payPop .25s ease;
+  }
+  @keyframes payPop{from{transform:scale(.92); opacity:0;} to{transform:scale(1); opacity:1;}}
+  .pay-modal-close{
+    position:absolute; top:10px; right:12px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+    color:#fff; width:28px; height:28px; border-radius:50%;
+    cursor:pointer; font-size:.95rem; line-height:1;
+  }
+  .pay-modal-logo{
+    width:52px; height:52px; border-radius:14px; margin:0 auto 12px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .pay-modal-logo img{width:70%; height:70%; object-fit:contain;}
+  .pay-modal-box h3{color:#fff; font-size:1.05rem; margin-bottom:14px;}
+  .pay-detail-row{
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+    border-radius:12px; padding:12px 14px; margin-bottom:10px; text-align:left;
+  }
+  .pay-detail-row .lbl{color:var(--text-muted); font-size:.68rem; text-transform:uppercase; letter-spacing:.5px; margin-bottom:3px;}
+  .pay-detail-row .val{color:#fff; font-size:.98rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .copy-btn{
+    background:var(--accent-cyan-soft); border:1px solid rgba(34,211,238,.4); color:var(--accent-cyan);
+    font-size:.68rem; font-weight:700; padding:5px 9px; border-radius:8px; cursor:pointer; white-space:nowrap;
+  }
+  .copy-btn.copied{background:rgba(74,222,128,.18); border-color:rgba(74,222,128,.5); color:#4ade80;}
+  .pay-qris-img{
+    width:100%; max-width:240px; border-radius:14px; margin:4px auto 12px; display:block;
+    border:1px solid rgba(255,255,255,.15); background:#fff;
+  }
+  .pay-modal-note{color:var(--text-muted); font-size:.76rem; line-height:1.5; margin-top:6px;}
+
+  @media (max-width:480px){
+    header h1{font-size:1.5rem;}
+    .section-title{font-size:1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+<canvas id="meteorCanvas"></canvas>
+
+<header>
+  <div class="brand"><span class="dot"></span>AMAH STORE</div>
+  <h1>Premium Apps, Aman &amp; Bergaransi</h1>
+  <p class="tagline">Musik • Streaming • Editing • AI Tools — Restock Setiap Hari</p>
+</header>
+
+<div class="ticker-wrap">
+  <div class="ticker" id="tickerRow">
+  </div>
+</div>
+
+<section class="section">
+  <div class="eyebrow">apps premium</div>
+  <h2 class="section-title">📢 Daftar Aplikasi Premium</h2>
+  <p class="section-sub">Semua stok di bawah ini. Klik kartu produk untuk order langsung via WhatsApp.</p>
+
+  <div class="cat-label"><h3>🎵 Musik &amp; Audio</h3><div class="line"></div></div>
+  <div class="grid">
+    <div class="card"><div class="app-logo"><img src="apple-music.jpg" alt="Apple Music Head 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎵</div></div><h4>Apple Music Head 1 Bulan</h4><p class="price">Rp 12.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="spotify.jpg" alt="Spotify Famplan 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎧</div></div><h4>Spotify Famplan 1 Bulan</h4><p class="price">Rp 20.000 <small>1 bulan</small></p></div>
+  </div>
+
+  <div class="cat-label"><h3>🎬 Streaming &amp; Hiburan</h3><div class="line"></div></div>
+  <div class="grid">
+    <div class="card"><div class="app-logo"><img src="netflix.jpg" alt="Netflix 1p1u 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎬</div></div><h4>Netflix 1p1u 1 Bulan </h4><p class="price">Rp 30.000 <small>per akun</small></p></div>
+    <div class="card"><div class="app-logo"><img src="netflix.jpg" alt="Netflix 7 Hari 1 User logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎬</div></div><h4>Netflix 7 Hari 1 User</h4><p class="price">Rp 13.000 <small>per 7 hari</small></p></div>
+    <div class="card"><div class="app-logo"><img src="disney-plus.jpg" alt="Disney+ Sharing 1 Bulan (7U) logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🏰</div></div><h4>Disney 1 Bulan (7U)</h4><p class="price">Rp 15.000 <small>per bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="hbo-max.jpg" alt="HBO Max logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎥</div></div><h4>HBO Max standar premium 1b</h4><p class="price">Rp 40.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="prime-video.jpg" alt="Prime Video 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📦</div></div><h4>Prime Video 1 Bulan</h4><p class="price">Rp 20.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="iqiyi.jpg" alt="Iqiyi 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📺</div></div><h4>Iqiyi 1 Bulan </h4><p class="price">Rp 20.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="bstation.jpg" alt="BStation logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📺</div></div><h4>BStation</h4><p class="price">Rp 13.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="loklok.jpg" alt="Loklok Priv / Sharing logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎞️</div></div><h4>Loklok basic</h4><p class="price">Rp 32.000 <small>1 bulan</small></p></div>
+  </div>
+
+  <div class="cat-label"><h3>🎨 Desain &amp; Editing</h3><div class="line"></div></div>
+  <div class="grid">
+    <div class="card"><div class="app-logo"><img src="capcut.jpg" alt="CapCut 7 Days logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">✂️</div></div><h4>CapCut 7 Days</h4><p class="price">Rp 10.000 <small>7 hari</small></p></div>
+    <div class="card"><div class="app-logo"><img src="capcut.jpg" alt="CapCut No Renew 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">✂️</div></div><h4>CapCut No Renew 1 Bulan</h4><p class="price">Rp 39.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="canva.jpg" alt="Canva 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎨</div></div><h4>Canva 1 Bulan</h4><p class="price">Rp 3.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="alight-motion.jpg" alt="Alight Motion 1 Tahun logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎞️</div></div><h4>Alight Motion 1 Tahun</h4><p class="price">Rp 2.000 <small>1 tahun</small></p></div>
+  </div>
+
+  <div class="cat-label"><h3>🤖 AI Tools</h3><div class="line"></div></div>
+  <div class="grid">
+    <div class="card"><div class="app-logo"><img src="gemini-ai.jpg" alt="Gemini AI Pro 1 Bulan Invite logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">✨</div></div><h4>Gemini AI Pro 1 Bulan Invite</h4><p class="price">Rp 35.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="leonardo-ai.jpg" alt="Leonardo AI logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🖼️</div></div><h4>Leonardo AI</h4><p class="price">Rp 35.000 <small>per bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="grok-ai.jpg" alt="Grok AI Priv 7 Days logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🤖</div></div><h4>Grok AI Priv 7 Days</h4><p class="price">Rp 20.000 <small>7 hari</small></p></div>
+  </div>
+
+  <div class="cat-label"><h3>🛠️ Utilitas &amp; Lainnya</h3><div class="line"></div></div>
+  <div class="grid">
+    <div class="card"><div class="app-logo"><img src="hma-vpn.jpg" alt="HMA VPN logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🔒</div></div><h4>HMA VPN</h4><p class="price">Rp 8.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="getcontact.jpg" alt="Getcontact 1 Bulan logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">☎️</div></div><h4>Getcontact 1 Bulan</h4><p class="price">Rp 15.000 <small>1 bulan</small></p></div>
+  </div>
+
+  <div class="cat-label"><h3>🆕 Apps Lainnya</h3><div class="line"></div></div>
+  <div class="grid">
+    <div class="card"><div class="app-logo"><img src="wink.jpg" alt="Wink Priv 7D Andro logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📸</div></div><h4>Wink Priv 7D Andro</h4><p class="price">Rp 15.000 <small>7 hari</small></p></div>
+    <div class="card"><div class="app-logo"><img src="youku.jpg" alt="Youku Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📺</div></div><h4>Youku Premium shering</h4><p class="price">Rp 10.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="youtube.jpg" alt="YouTube Indplan Acc S 14D logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">▶️</div></div><h4>YouTube Indplan Acc S 14D</h4><p class="price">Rp 9.000 <small>14 hari</small></p></div>
+    <div class="card"><div class="app-logo"><img src="youtube.jpg" alt="YouTube premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">▶️</div></div><h4>YouTube premium</h4><p class="price">Rp 22.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="zoom.jpg" alt="Zoom Private 14D logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">💻</div></div><h4>Zoom Private 14D</h4><p class="price">Rp 8.000 <small>14 hari</small></p></div>
+    <div class="card"><div class="app-logo"><img src="iqiyi.jpg" alt="Iqiyi Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📺</div></div><h4>Iqiyi Premium</h4><p class="price">Rp 20.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="loklok.jpg" alt="Loklok Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎞️</div></div><h4>Loklok Premium standar</h4><p class="price">Rp 39.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="meitu.jpg" alt="Meitu Private 7 Hari logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🤳</div></div><h4>Meitu Primium private VIP+ </h4><p class="price">Rp 60.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="prime-video.jpg" alt="Prime Video Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📦</div></div><h4>Prime Video Premium</h4><p class="price">Rp 20.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="spotify.jpg" alt="Spotify Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎧</div></div><h4>Spotify Premium famplan</h4><p class="price">Rp 25.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="vidio.jpg" alt="Vidio Private logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📱</div></div><h4>Vidio Platinum shering 1 Bln</h4><p class="price">Rp 20.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="wetv.jpg" alt="WeTV Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📺</div></div><h4>WeTV Premium shering 1b 6u</h4><p class="price">Rp 10.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="duolingo.jpg" alt="duolingo super" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🦉</div></div><h4>duolingo super</h4><p class="price">Rp 10.000 <small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="am-generator.jpg" alt="AM  logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">⚙️</div></div><h4>Alight motion 1 y </h4><p class="price">Rp 2.000 <small>per generate</small></p></div>
+    <div class="card"><div class="app-logo"><img src="viu.jpg" alt="Viu Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">📺</div></div><h4>Viu Premium lifetime</h4><p class="price">Rp 6.000 <small> lifetime</small></p></div>
+    <div class="card"><div class="app-logo"><img src="dramabox.jpg" alt="Gagaolala Shar 1 Bln logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎬</div></div><h4>Drama Box Shar 1 Bln</h4><p class="price">Rp 20.000<small>1 bulan</small></p></div>
+    <div class="card"><div class="app-logo"><img src="hbo-max.jpg" alt="HBO Premium logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="app-logo-fallback">🎥</div></div><h4>HBO Premium ultimate sharing</h4><p class="price">Rp 20.000 <small>1 bulan</small></p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">Kenapa di Amah store</div>
+  <h2 class="section-title">Belanja Tenang, Akun Aman</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="ic">⚡</div><h4>Proses Cepat</h4><p>Order diproses dalam hitungan 15 menit setelah pembayaran dikonfirmasi, harap bersabar.</p></div>
+    <div class="why-card"><div class="ic">🔒</div><h4>Akun Aman</h4><p>Jika bermasalah segera berikabar, langsung digaransi jika sesuai peraturan.</p></div>
+    <div class="why-card"><div class="ic">💬</div><h4>Admin Responsif</h4><p>Admin siap merespon, namun utamakan adab dan jangan rush di WhatsApp. Jika rush maka garansi hangus.</p></div>
+    <div class="why-card"><div class="ic">🔁</div><h4>Restock Rutin</h4><p>Stok diperbarui setiap hari.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">Wajib Dibaca</div>
+  <h2 class="section-title">📋 Syarat &amp; Ketentuan (SK)</h2>
+  <div class="rules-box">
+    <ul>
+      <li><span class="num">1</span>Wajib kirim bukti screenshot tf (transfer) di grub wa sebelum akun diberikan </li>
+      <li><span class="num">2</span>Garansi hanya berlaku untuk penggunaan wajar &amp; sesuai ketentuan tiap produk (tidak logout paksa, tidak ganti password/email tanpa izin admin).</li>
+      <li><span class="num">3</span>Wajib kirim bukti screenshot cuman 5 jam/ video saat akun pertama kali diterima, sebagai syarat klaim garansi di kemudian hari... no ss no garangsi!!!.</li>
+      <li><span class="num">4</span>Produk sharing dipakai sesuai slot yang diberikan; dilarang membagikan ulang ke pihak lain di luar transaksi.</li>
+      <li><span class="num">5</span>Komplain di luar masa garansi yang tertera pada tiap produk tidak dapat diproses.</li>
+      <li><span class="num">6</span>Tidak ada refund untuk pesanan yang sudah diproses/dikirim, kecuali stok terbukti tidak valid dari pihak kami.</li>
+      <li><span class="num">7</span>Harga &amp; ketersediaan stok dapat berubah sewaktu-waktu mengikuti kondisi provider.</li>
+      <li><span class="num">8</span>Selalu konfirmasi ke Admin Pribadi sebelum transfer untuk menghindari penipuan mengatasnamakan toko.</li>
+      <li><span class="num">9</span>Refund dihitung berdasarkan sisa masa aktif yang belum terpakai. Lihat cara menghitung refund di bawah.</li>
+    </ul>
+    <p style="margin-top:12px; font-size:12px;">
+      Cara Menghitung Refund:<br>
+      Rumus: Harga Beli × Sisa Masa Aktif ÷ Total Durasi × Service Fee<br>
+      Contoh: Rp22.000 × 42 hari ÷ 60 hari × 0.7 = Rp10.780<br>
+      Service fee ditentukan dari kondisi pemakaian &amp; riwayat klaim garansi (lihat tabel service fee). Klik web untuk menghitung refund, dan jika sudah selesai langsung send QR sama total refund ke admin ⬇️.<br>
+      Source code: <a href="https://amamukarramah04-tech.github.io/Kalkulator-Refund/" target="_blank" style="color:#5EEBFF; font-weight:bold;">github.io/Kalkulator-Refund/</a>
+    </p>
+  </div>
+</section>
+
+<section class="section" style="text-align:center;">
+  <div class="eyebrow">Kata Mereka</div>
+  <h2 class="section-title">📸 Testimoni Pelanggan</h2>
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide"><p class="quote">"Order Netflix jam 9 malam, 10 menit langsung jadi. Mantap!"</p><p class="who">— @dewi.stream</p></div>
+      <div class="slide"><p class="quote">"Canva Pro invite worked lancar, harga jauh lebih murah dari resmi."</p><p class="who">— @arif.design</p></div>
+      <div class="slide"><p class="quote">"CapCut no renew awet, admin fast respon banget kalau ada kendala."</p><p class="who">— @kiki.edit</p></div>
+      <div class="slide"><p class="quote">"Udah langganan Spotify famplan 3 bulan di sini, aman terus."</p><p class="who">— @yoga_m</p></div>
+      <div class="slide"><p class="quote">"Gemini AI Pro invite prosesnya jelas, garansi jalan pas ada masalah."</p><p class="who">— @nadia.tech</p></div>
+    </div>
+    <div class="slider-buttons"><button onclick="prevSlide()">‹</button><button onclick="nextSlide()">›</button></div>
+  </div>
+  <div class="stars">★★★★★</div>
+  <p class="rating-text">4.9 dari 5 — berdasarkan pesanan yang masuk</p>
+
+  <div class="photo-gallery-wrap">
+    <div class="photo-gallery-track" id="photoGalleryTrack">
+      <div class="photo-slot">
+        <img src="testi-1.jpg" alt="Bukti Testimoni 1" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #1</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-2.jpg" alt="Bukti Testimoni 2" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #2</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-3.jpg" alt="Bukti Testimoni 3" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #3</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-4.jpg" alt="Bukti Testimoni 4" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #4</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-5.jpg" alt="Bukti Testimoni 5" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #5</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-6.jpg" alt="Bukti Testimoni 6" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #6</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-7.jpg" alt="Bukti Testimoni 7" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #7</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-8.jpg" alt="Bukti Testimoni 8" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #8</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-9.jpg" alt="Bukti Testimoni 9" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #9</span>
+      </div>
+      <div class="photo-slot">
+        <img src="testi-10.jpg" alt="Bukti Testimoni 10" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="ph-icon" style="display:none;">🖼️</span>
+        <span class="ph-label" style="display:none;">Bukti Testimoni #10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="text-align:center;">
+  <div class="eyebrow">Hubungi Kami</div>
+  <h2 class="section-title">💬 Order &amp; Info Stok</h2>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="ic">👥</div>
+      <h4>Grup WhatsApp</h4>
+      <p>Update stok, promo &amp; open PO tercepat ada di grup.</p>
+      <a class="btn btn-cyan" href="https://chat.whatsapp.com/Hil6qPT4ZfGLHn6mDacoQc" target="_blank">Join Grup WA</a>
+    </div>
+    <div class="contact-card">
+      <div class="ic">🙋</div>
+      <h4>Admin Pribadi</h4>
+      <p>Untuk order langsung, tanya harga, atau klaim garansi.</p>
+      <a class="btn btn-cyan" href="https://api.whatsapp.com/send?phone=6285299779798" target="_blank">Chat Admin</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="text-align:center;">
+  <div class="eyebrow">Cara Pembayaran</div>
+  <h2 class="section-title">💳 Metode Pembayaran</h2>
+
+  <div class="payment-notice">
+    ⚠️ <b>PENTING:</b> Sebelum melakukan pembayaran, wajib tanya &amp; konfirmasi dulu ketersediaan stok ke Admin. Transfer tanpa konfirmasi stok terlebih dahulu bukan tanggung jawab kami sesuai SK yang berlaku.
+    <br>
+    <a class="btn btn-cyan" href="https://api.whatsapp.com/send?phone=6285299779798&text=Halo%20Admin%2C%20saya%20mau%20tanya%20stok%20dulu%20sebelum%20order" target="_blank">✅ Tanya Stok Dulu ke Admin</a>
+  </div>
+
+  <div class="grid">
+    <div class="card payment-card" data-type="bank" data-bank="BRI" data-logo="bri.jpg" data-number="0187 0109 9055 505" data-owner="Mukarramah">
+      <div class="app-logo"><div class="payment-logo-box"><img src="bri.jpg" alt="BRI logo" loading="lazy" onerror="this.parentElement.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';"></div><div class="app-logo-fallback">🏦</div></div>
+      <h4>BRI</h4>
+      <span class="pay-hint">👁️</span>
+    </div>
+    <div class="card payment-card" data-type="qris" data-logo="qris.png" data-qris="qris.png">
+      <div class="app-logo"><div class="payment-logo-box"><img src="qris.png" alt="QRIS logo" loading="lazy" onerror="this.parentElement.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';"></div><div class="app-logo-fallback">🔳</div></div>
+      <h4>QRIS</h4>
+      <span class="pay-hint">👁️</span>
+    </div>
+    <div class="card payment-card" data-type="bank" data-bank="DANA" data-logo="dana.jpg" data-number="085299779798" data-owner="Mukarramah">
+      <div class="app-logo"><div class="payment-logo-box"><img src="dana.jpg" alt="DANA logo" loading="lazy" onerror="this.parentElement.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';"></div><div class="app-logo-fallback">💳</div></div>
+      <h4>DANA</h4>
+      <span class="pay-hint">👁️</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">Sering Ditanya</div>
+  <h2 class="section-title">❓ FAQ</h2>
+  <div class="faq-section">
+    <div class="faq-item">
+      <div class="faq-question">Apakah akun sharing aman dipakai?</div>
+      <div class="faq-answer">Aman selama mengikuti SK yang berlaku, seperti tidak logout paksa atau ganti password tanpa izin admin.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Berapa lama proses setelah bayar?</div>
+      <div class="faq-answer">Rata-rata 5–15 menit setelah pembayaran dikonfirmasi admin, tergantung antrean.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Kalau akun tiba-tiba logout, apa bisa diganti?</div>
+      <div class="faq-answer">Bisa, selama masih dalam masa garansi produk dan sudah kirim bukti screenshot awal sesuai SK.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Bayar via apa saja?</div>
+      <div class="faq-answer">Via metode pembayaran yang tersedia di web ini.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand" style="justify-content:center;"><span class="dot"></span>AMAH STORE</div>
+  <p style="margin-top:8px;">&copy; 2026/2027 AMAH Store • Premium Apps Reseller</p>
+</footer>
+
+<button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Ke atas">↑</button>
+<a id="waFloat" href="https://api.whatsapp.com/send?phone=6285299779798" target="_blank">💬 Chat Admin</a>
+
+<div class="pay-modal-overlay" id="payModalOverlay">
+  <div class="pay-modal-box" id="payModalBox">
+    <button class="pay-modal-close" id="payModalClose">✕</button>
+    <div id="payModalContent"></div>
+  </div>
+</div>
+
+<audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+<button id="musicToggleBtn" title="Putar musik">🎵</button>
+
+<script>
+  (function(){
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicToggleBtn');
+    let isPlaying = false;
+
+    function markPlaying(){
+      isPlaying = true;
+      btn.textContent = '⏸️';
+      btn.classList.add('playing');
+      btn.title = 'Jeda musik';
+    }
+    function markPaused(){
+      isPlaying = false;
+      btn.textContent = '🎵';
+      btn.classList.remove('playing');
+      btn.title = 'Putar musik';
+    }
+
+    // 1) Coba autoplay begitu halaman dimuat
+    function tryAutoplay(){
+      const p = audio.play();
+      if(p !== undefined){
+        p.then(markPlaying).catch(armFirstInteractionAutoplay);
+      }
+    }
+
+    // 2) Kalau diblokir browser, nyalakan otomatis begitu user pertama kali berinteraksi
+    function armFirstInteractionAutoplay(){
+      const events = ['click','touchstart','scroll','keydown'];
+      function startOnce(){
+        if(isPlaying) return;
+        audio.play().then(markPlaying).catch(()=>{});
+        events.forEach(ev => document.removeEventListener(ev, startOnce));
+      }
+      events.forEach(ev => document.addEventListener(ev, startOnce, {passive:true}));
+    }
+
+    window.addEventListener('load', tryAutoplay);
+
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(!isPlaying){
+        audio.play().then(markPlaying).catch(()=>{
+          alert('Musik belum bisa diputar. Pastikan file music.mp3 sudah diupload.');
+        });
+      } else {
+        audio.pause();
+        markPaused();
+      }
+    });
+  })();
+
+  (function(){
+    const canvas = document.getElementById('meteorCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resize(){
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const COLORS = ['#ffffff', '#22d3ee', '#fbbf24', '#c4b5fd'];
+
+    function spawnMeteor(){
+      const len = 90 + Math.random()*90;
+      const speed = 5 + Math.random()*6;
+      const angle = (200 + Math.random()*30) * Math.PI/180;
+      return {
+        x: Math.random()*W*1.3 - W*0.15,
+        y: -Math.random()*H*0.3,
+        len, speed, angle,
+        size: 1.2 + Math.random()*1.6,
+        color: COLORS[Math.floor(Math.random()*COLORS.length)],
+        twinkle: Math.random()*Math.PI*2,
+        twinkleSpeed: 0.08 + Math.random()*0.12,
+        life: 0,
+        maxLife: 70 + Math.random()*60,
+        active: true
+      };
+    }
+
+    const STAR_COUNT = 130;
+    const stars = Array.from({length: STAR_COUNT}, () => ({
+      x: Math.random()*W,
+      y: Math.random()*H,
+      r: Math.random()*1.6 + 0.3,
+      twinkle: Math.random()*Math.PI*2,
+      speed: 0.02 + Math.random()*0.05
+    }));
+
+    let sparkles = [];
+    function spawnSparkle(x, y, color){
+      sparkles.push({
+        x, y, color,
+        vx: (Math.random()-0.5)*0.6,
+        vy: (Math.random()-0.5)*0.6,
+        r: Math.random()*1.4 + 0.4,
+        life: 0,
+        maxLife: 30 + Math.random()*30
+      });
+    }
+
+    let meteors = [];
+    let spawnTimer = 0;
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+
+      stars.forEach(s=>{
+        s.twinkle += s.speed;
+        const alpha = 0.35 + Math.sin(s.twinkle)*0.35;
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${Math.max(0,alpha)})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+      });
+
+      spawnTimer--;
+      if(spawnTimer <= 0 && meteors.length < 22){
+        meteors.push(spawnMeteor());
+        spawnTimer = 10 + Math.random()*22;
+      }
+
+      meteors.forEach(m=>{
+        m.life++;
+        m.twinkle += m.twinkleSpeed;
+        const dx = Math.cos(m.angle);
+        const dy = Math.sin(m.angle);
+        m.x += dx * m.speed;
+        m.y += dy * m.speed;
+
+        let alpha = 1;
+        const fadeIn = 8;
+        const fadeOut = m.maxLife - 15;
+        if(m.life < fadeIn) alpha = m.life/fadeIn;
+        else if(m.life > fadeOut) alpha = Math.max(0, (m.maxLife - m.life)/15);
+
+        const shimmer = 0.6 + Math.sin(m.twinkle)*0.4;
+        const tailX = m.x - dx*m.len;
+        const tailY = m.y - dy*m.len;
+
+        const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+        grad.addColorStop(0, m.color);
+        grad.addColorStop(0.15, m.color);
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+
+        ctx.save();
+        ctx.globalAlpha = alpha * shimmer;
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = m.size;
+        ctx.lineCap = 'round';
+        ctx.shadowColor = m.color;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowBlur = 16;
+        ctx.arc(m.x, m.y, m.size*1.3, 0, Math.PI*2);
+        ctx.fill();
+
+        const glintLen = m.size*4 * shimmer;
+        ctx.globalAlpha = alpha * shimmer * 0.85;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 0.7;
+        ctx.beginPath();
+        ctx.moveTo(m.x - glintLen, m.y);
+        ctx.lineTo(m.x + glintLen, m.y);
+        ctx.moveTo(m.x, m.y - glintLen);
+        ctx.lineTo(m.x, m.y + glintLen);
+        ctx.stroke();
+        ctx.restore();
+
+        if(Math.random() < 0.5){
+          spawnSparkle(m.x - dx*m.len*Math.random(), m.y - dy*m.len*Math.random(), m.color);
+        }
+
+        if(m.life >= m.maxLife || m.x < -200 || m.y > H+200){
+          m.active = false;
+        }
+      });
+
+      meteors = meteors.filter(m=>m.active);
+
+      sparkles.forEach(sp=>{
+        sp.life++;
+        sp.x += sp.vx;
+        sp.y += sp.vy;
+        const a = Math.max(0, 1 - sp.life/sp.maxLife);
+        ctx.save();
+        ctx.globalAlpha = a;
+        ctx.fillStyle = sp.color;
+        ctx.shadowColor = sp.color;
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+      });
+      sparkles = sparkles.filter(sp=>sp.life < sp.maxLife);
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  (function(){
+    const track = document.getElementById('photoGalleryTrack');
+    if(track){ track.innerHTML += track.innerHTML; }
+  })();
+
+  const restockItems = [
+    "Apple Music Inplan","Apple Music Head","BStation","CapCut 30 Days","Canva Pro Invite 1 Tahun",
+    "Canva Edu Invite","Disney","Gemini AI Pro 18 Bulan","HMA VPN","HBO Max",
+    "Netflix 1 Bulan Sharing","Leonardo AI","Prime Video","Spotify Famplan 1 Bulan","Grok AI Priv 7 Days",
+    "CapCut 7 Days","Prime 1 Bulan","Loklok Priv/Shar","Alight Motion 1 Tahun",
+    "Canva 1 Bulan","Netflix 7 Hari 1U","Iqiyi 1 Bulan","Getcontact 1 Bulan"
+  ];
+  const tickerRow = document.getElementById('tickerRow');
+  const doubled = [...restockItems, ...restockItems];
+  tickerRow.innerHTML = doubled.map(i => `<span>${i} — Apps</span>`).join("");
+
+  let currentIndex = 0;
+  const slider = document.getElementById('slider');
+  const totalSlides = slider.children.length;
+  function showSlide(i){ slider.style.transform = `translateX(-${i*100}%)`; }
+  function nextSlide(){ currentIndex = (currentIndex+1)%totalSlides; showSlide(currentIndex); }
+  function prevSlide(){ currentIndex = (currentIndex-1+totalSlides)%totalSlides; showSlide(currentIndex); }
+  setInterval(nextSlide, 4000);
+
+  const scrollBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function(){
+    scrollBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
+  };
+
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.addEventListener('click', ()=> item.classList.toggle('active'));
+  });
+
+  (function(){
+    const phone = '6285299779798';
+    document.querySelectorAll('.grid .card:not(.payment-card)').forEach(card=>{
+      const priceEl = card.querySelector('.price');
+      if(!priceEl) return;
+
+      const name = card.querySelector('h4')?.textContent.trim() || '';
+      const price = priceEl.childNodes[0]?.textContent.trim() || '';
+
+      const text = encodeURIComponent(`Halo Admin, saya mau order "${name}" (${price}). Apakah stok masih tersedia?`);
+      const link = `https://api.whatsapp.com/send?phone=${phone}&text=${text}`;
+
+      card.classList.add('clickable');
+      const hint = document.createElement('span');
+      hint.className = 'wa-hint';
+      hint.textContent = '💬';
+      card.appendChild(hint);
+
+      card.addEventListener('click', ()=> window.open(link, '_blank'));
+    });
+  })();
+
+  (function(){
+    const overlay = document.getElementById('payModalOverlay');
+    const box = document.getElementById('payModalBox');
+    const content = document.getElementById('payModalContent');
+    const closeBtn = document.getElementById('payModalClose');
+
+    function closeModal(){ overlay.classList.remove('open'); }
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+
+    function copyText(txt, btnEl){
+      navigator.clipboard.writeText(txt).then(()=>{
+        const original = btnEl.textContent;
+        btnEl.textContent = 'Tersalin!';
+        btnEl.classList.add('copied');
+        setTimeout(()=>{ btnEl.textContent = original; btnEl.classList.remove('copied'); }, 1500);
+      }).catch(()=>{ alert('Gagal menyalin. Nomor: ' + txt); });
+    }
+
+    document.querySelectorAll('.payment-card').forEach(card=>{
+      card.addEventListener('click', ()=>{
+        const type = card.dataset.type;
+        const logo = card.dataset.logo || '';
+
+        if(type === 'bank'){
+          const bank = card.dataset.bank || '';
+          const number = card.dataset.number || '-';
+          const owner = card.dataset.owner || '';
+          content.innerHTML = `
+            <div class="pay-modal-logo"><img src="${logo}" alt="${bank} logo" onerror="this.parentElement.style.display='none';"></div>
+            <h3>Transfer ${bank}</h3>
+            <div class="pay-detail-row">
+              <div class="lbl">Nomor ${bank === 'DANA' ? 'DANA' : 'Rekening'}</div>
+              <div class="val"><span>${number}</span><button class="copy-btn" data-copy="${number}">Salin</button></div>
+            </div>
+            <div class="pay-detail-row">
+              <div class="lbl">Atas Nama</div>
+              <div class="val"><span>${owner}</span></div>
+            </div>
+            <p class="pay-modal-note">Setelah transfer, wajib kirim bukti screenshot ke Admin Pribadi sesuai SK yang berlaku.</p>
+          `;
+        } else if(type === 'qris'){
+          const qris = card.dataset.qris || '';
+          content.innerHTML = `
+            <div class="pay-modal-logo"><img src="${logo}" alt="QRIS logo" onerror="this.parentElement.style.display='none';"></div>
+            <h3>Bayar via QRIS</h3>
+            <img class="pay-qris-img" src="${qris}" alt="QRIS AMAH STORE" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<p class=\\'pay-modal-note\\'>Gambar QRIS belum tersedia. Pastikan file ${qris} sudah diupload.</p>');">
+            <p class="pay-modal-note">Scan QR di atas menggunakan aplikasi e-wallet/m-banking favoritmu. Setelah bayar, wajib kirim bukti screenshot ke Admin Pribadi sesuai SK yang berlaku.</p>
+          `;
+        }
+
+        overlay.classList.add('open');
+
+        const cbtn = content.querySelector('.copy-btn');
+        if(cbtn){
+          cbtn.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            copyText(cbtn.dataset.copy, cbtn);
+          });
+        }
+      });
+    });
+
+    box.addEventListener('click', (e)=> e.stopPropagation());
+  })();
+</script>
+
+</body>
+</html>
